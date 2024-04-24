@@ -1,5 +1,5 @@
 {%- for tab in product.selected_or_first_available_variant.metafields.custom.tabs.value -%}
-  <button class="accordion">{{ tab.title }}</button>
+  <button class="accordion" onclick="openTab(event)">{{ tab.title }}</button>
   <div id="{{ tab.title }}" class="panel">
     <p>{{ tab.content | metafield_tag }}</p>
   </div>
