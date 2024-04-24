@@ -64,8 +64,8 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "share",
-        "tabs"
+        "tabs",
+        "share"
       ],
       "settings": {
         "enable_sticky_info": true,
