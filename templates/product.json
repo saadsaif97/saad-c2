@@ -120,11 +120,20 @@
             "url": "https:\/\/google.com",
             "description": "Registered"
           }
+        },
+        "vip_7RtyPn": {
+          "type": "vip",
+          "settings": {
+            "cover_image": "shopify:\/\/shop_images\/snowboard_wax.png",
+            "url": "https:\/\/google.com",
+            "description": "VIP"
+          }
         }
       },
       "block_order": [
         "guest_JHkhAW",
-        "registered_gEhWGg"
+        "registered_gEhWGg",
+        "vip_7RtyPn"
       ],
       "settings": {
         "heading_size": "h1",
