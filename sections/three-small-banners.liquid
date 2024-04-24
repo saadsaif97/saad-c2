@@ -1,21 +1,20 @@
-{%- for block in section.blocks -%}
-  {%- case block.type -%}
-    {%- when 'banner' -%}
-      <div>
-        <a
-          href="{{ block.settings.url }}"
-          class="collage-card__link"
-        >
-          <div
-            class="media media--transparent ratio"
-            {% if block.settings.cover_image != blank %}
-              style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
-            {% else %}
-              style="--ratio-percent: 100%"
-            {% endif %}
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+  {%- for block in section.blocks -%}
+    {%- case block.type -%}
+      {%- when 'banner' -%}
+        <div>
+          <a
+            href="{{ block.settings.url }}"
+            class="collage-card__link"
           >
-            {%- if block.settings.cover_image != blank -%}
-              {%- capture sizes -%}
+            <div
+              class="media media--transparent ratio"
+              {% if block.settings.cover_image != blank %}
+                style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
+              {% endif %}
+            >
+              {%- if block.settings.cover_image != blank -%}
+                {%- capture sizes -%}
                 (min-width: {{ settings.page_width }}px)
                 {% if section.blocks.size == 1 -%}
                   calc({{ settings.page_width }}px - 100px)
@@ -26,62 +25,90 @@
                 {%- if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif -%}
                 , calc(100vw - 30px)
               {%- endcapture -%}
-              {{
-                block.settings.cover_image
-                | image_url: width: 3000
-                | image_tag: sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000'
-              }}
-            {%- else -%}
-              {{ 'hero-apparel-3' | placeholder_svg_tag: 'placeholder-svg placeholder' }}
-            {%- endif -%}
-          </div>
-        </a>
-      </div>
-  {%- endcase -%}
-{%- endfor -%}
+                {{
+                  block.settings.cover_image
+                  | image_url: width: 3000
+                  | image_tag: sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000'
+                }}
+              {%- endif -%}
+
+              <h3
+                class="{{ section.settings.heading_size }}"
+                style="position: absolute; top: 50%; text-align: center; margin: 0;"
+              >
+                {{ block.settings.description }}
+              </h3>
+            </div>
+          </a>
+        </div>
+    {%- endcase -%}
+  {%- endfor -%}
+</div>
 
 {% schema %}
-  {
-    "name": "Three small banners",
-    "tag": "section",
-    "class": "section",
-    "disabled_on": {
-      "groups": ["header", "footer"]
-    },
-    "blocks": [
-      {
-        "type": "banner",
-        "name": "Banner",
-        "settings": [
-          {
-            "type": "image_picker",
-            "id": "cover_image",
-            "label": "Cover image"
-          },
-          {
-            "type": "url",
-            "id": "url",
-            "label": "Link url"
-          },
-          {
-            "type": "text",
-            "id": "description",
-            "default": "Describe the Banner",
-            "label": "Description"
-          }
-        ]
-      }
-    ],
-    "max_blocks": 3,
-    "presets": [
-      {
-        "name": "Banner",
-        "blocks": [
-          {
-            "type": "banner"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "Three small banners",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "banner",
+      "name": "Banner",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link url"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "default": "Describe the Banner",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3,
+  "presets": [
+    {
+      "name": "Three Small Banners",
+      "blocks": [
+        {
+          "type": "banner"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
