@@ -637,6 +637,8 @@
                 </product-recommendations>
               {%- when 'icon-with-text' -%}
                 {% render 'icon-with-text', block: block %}
+              {%- when 'tabs' -%}
+                {% render 'pdp-tabs' %}
             {%- endcase -%}
           {%- endfor -%}
           <a href="{{ product.url }}" class="link product__view-details animate-arrow">
@@ -2123,6 +2125,11 @@
           "info": "t:sections.main-product.blocks.icon_with_text.settings.heading.info"
         }
       ]
+    },
+    {
+      "type": "tabs",
+      "name": "Product tabs",
+      "limit": 1
     }
   ],
   "settings": [

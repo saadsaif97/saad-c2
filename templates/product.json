@@ -49,6 +49,11 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+          }
         }
       },
       "block_order": [
