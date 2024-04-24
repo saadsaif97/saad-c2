@@ -44,15 +44,15 @@
           "settings": {
           }
         },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+          }
+        },
         "share": {
           "type": "share",
           "settings": {
             "share_label": "Share"
-          }
-        },
-        "tabs": {
-          "type": "tabs",
-          "settings": {
           }
         }
       },
@@ -85,6 +85,7 @@
     },
     "related-products": {
       "type": "related-products",
+      "disabled": true,
       "settings": {
         "heading": "You may also like",
         "heading_size": "h2",
@@ -100,10 +101,40 @@
         "padding_top": 36,
         "padding_bottom": 28
       }
+    },
+    "big_banner_7FymLQ": {
+      "type": "big-banner",
+      "blocks": {
+        "guest_JHkhAW": {
+          "type": "guest",
+          "settings": {
+            "cover_image": "shopify:\/\/shop_images\/sample-normal-wax.png",
+            "url": "https:\/\/google.com",
+            "description": "Guest"
+          }
+        },
+        "registered_gEhWGg": {
+          "type": "registered",
+          "settings": {
+            "cover_image": "shopify:\/\/shop_images\/wax-special.png",
+            "url": "https:\/\/google.com",
+            "description": "Registered"
+          }
+        }
+      },
+      "block_order": [
+        "guest_JHkhAW",
+        "registered_gEhWGg"
+      ],
+      "settings": {
+        "heading_size": "h1",
+        "text_color": "#000"
+      }
     }
   },
   "order": [
     "main",
-    "related-products"
+    "related-products",
+    "big_banner_7FymLQ"
   ]
 }
