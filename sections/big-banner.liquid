@@ -1,0 +1,176 @@
+{% liquid
+  if customer 
+    if customer.tags contains 'VIP'
+      assign user_type = 'vip'
+    else
+      assign user_type = 'registered'
+    endif
+  else
+    assign user_type = 'guest'
+  endif
+%}
+
+{%- for block in section.blocks -%}
+  {%- case block.type -%}
+    {%- when user_type -%}
+      <div>
+        <a
+          href="{{ block.settings.url }}"
+          class="collage-card__link"
+        >
+          <div
+            class="media media--transparent ratio"
+            {% if block.settings.cover_image != blank %}
+              style="--ratio-percent: {{ 1 | divided_by: block.settings.cover_image.aspect_ratio | times: 100 }}%"
+            {% endif %}
+          >
+            {%- if block.settings.cover_image != blank -%}
+              {%- capture sizes -%}
+              (min-width: {{ settings.page_width }}px)
+              {% if section.blocks.size == 1 -%}
+                calc({{ settings.page_width }}px - 100px)
+              {%- else -%}
+                {{- settings.page_width | minus: 100 | times: 0.67 | round }}px
+              {%- endif -%}
+              , (min-width: 750px)
+              {%- if section.blocks.size == 1 %} calc(100vw - 100px){% else %} 500px{% endif -%}
+              , calc(100vw - 30px)
+            {%- endcapture -%}
+              {{
+                block.settings.cover_image
+                | image_url: width: 3000
+                | image_tag: sizes: sizes, widths: '550, 720, 990, 1100, 1500, 2200, 3000'
+              }}
+            {%- endif -%}
+
+            <h3
+              class="{{ section.settings.heading_size }}"
+              style="position: absolute; top: 50%; text-align: center; margin: 0; color: {{ section.settings.text_color }}"
+            >
+              {{ block.settings.description }}
+            </h3>
+          </div>
+        </a>
+      </div>
+  {%- endcase -%}
+{%- endfor -%}
+
+{% schema %}
+{
+  "name": "Big Banner",
+  "tag": "section",
+  "class": "section",
+  "disabled_on": {
+    "groups": ["header", "footer"]
+  },
+  "settings": [
+    {
+      "type": "select",
+      "id": "heading_size",
+      "options": [
+        {
+          "value": "h2",
+          "label": "t:sections.all.heading_size.options__1.label"
+        },
+        {
+          "value": "h1",
+          "label": "t:sections.all.heading_size.options__2.label"
+        },
+        {
+          "value": "h0",
+          "label": "t:sections.all.heading_size.options__3.label"
+        }
+      ],
+      "default": "h1",
+      "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "guest",
+      "name": "Guest",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link url"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "default": "Non registered Users",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "registered",
+      "name": "Registered",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link url"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "default": "Registered without VIP tag",
+          "label": "Description"
+        }
+      ]
+    },
+    {
+      "type": "vip",
+      "name": "VIP",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "cover_image",
+          "label": "Cover image"
+        },
+        {
+          "type": "url",
+          "id": "url",
+          "label": "Link url"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "default": "Registered with VIP tag",
+          "label": "Description"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Big Banner",
+      "blocks": [
+        {
+          "type": "guest"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
