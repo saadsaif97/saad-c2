@@ -30,7 +30,7 @@
 <div id="{{ uid }}">
   <div id="variant-tabs">
     {%- for tab in product.selected_or_first_available_variant.metafields.custom.tabs.value -%}
-      <button class="accordion">{{ tab.title }}</button>
+      <button class="accordion" onclick="openTab(event)">{{ tab.title }}</button>
       <div id="{{ tab.title }}" class="panel">
         <p>{{ tab.content | metafield_tag }}</p>
       </div>
@@ -38,23 +38,16 @@
   </div>
 </div>
 
-<script>
-  (()=>{
-    let acc = document.getElementsByClassName("accordion");
-    let i;
-
-    for (i = 0; i < acc.length; i++) {
-      acc[i].addEventListener("click", function() {
-        this.classList.toggle("active");
-        let panel = this.nextElementSibling;
-        if (panel.style.display === "block") {
-          panel.style.display = "none";
-        } else {
-          panel.style.display = "block";
-        }
-      });
-    }
-  })()
+<script defer>
+  function openTab(evt) {
+    console.log(evt.target)
+    evt.target.classList.toggle("active");
+    
+    document.querySelectorAll("#{{ uid }} .panel").forEach(panel => panel.style.display = "none")
+    
+    let panel = evt.target.nextElementSibling;
+    panel.style.display = "block";
+  }
 </script>
 
 {% comment %} script to update section {% endcomment %}
