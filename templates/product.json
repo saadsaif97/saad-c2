@@ -139,11 +139,50 @@
         "heading_size": "h1",
         "text_color": "#000"
       }
+    },
+    "three_small_banners_EYV36P": {
+      "type": "three-small-banners",
+      "blocks": {
+        "banner_gVJtEF": {
+          "type": "banner",
+          "settings": {
+            "cover_image": "shopify:\/\/shop_images\/sample-normal-wax.png",
+            "url": "https:\/\/google.com",
+            "description": "ONE"
+          }
+        },
+        "banner_KyxT3q": {
+          "type": "banner",
+          "settings": {
+            "cover_image": "shopify:\/\/shop_images\/wax-special.png",
+            "url": "https:\/\/google.com",
+            "description": "TWO"
+          }
+        },
+        "banner_8KHwem": {
+          "type": "banner",
+          "settings": {
+            "cover_image": "shopify:\/\/shop_images\/snowboard_wax.png",
+            "url": "https:\/\/google.com",
+            "description": "Three"
+          }
+        }
+      },
+      "block_order": [
+        "banner_gVJtEF",
+        "banner_KyxT3q",
+        "banner_8KHwem"
+      ],
+      "settings": {
+        "heading_size": "h1",
+        "text_color": "#000"
+      }
     }
   },
   "order": [
     "main",
     "related-products",
-    "big_banner_7FymLQ"
+    "big_banner_7FymLQ",
+    "three_small_banners_EYV36P"
   ]
 }
