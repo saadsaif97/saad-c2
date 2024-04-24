@@ -34,7 +34,7 @@
 
               <h3
                 class="{{ section.settings.heading_size }}"
-                style="position: absolute; top: 50%; text-align: center; margin: 0;"
+                style="position: absolute; top: 50%; text-align: center; margin: 0; color: {{ section.settings.text_color }}"
               >
                 {{ block.settings.description }}
               </h3>
@@ -73,6 +73,12 @@
       ],
       "default": "h1",
       "label": "t:sections.all.heading_size.label"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text color",
+      "default": "#000"
     }
   ],
   "blocks": [
