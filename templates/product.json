@@ -49,6 +49,11 @@
           "settings": {
             "share_label": "Share"
           }
+        },
+        "tabs": {
+          "type": "tabs",
+          "settings": {
+          }
         }
       },
       "block_order": [
@@ -59,7 +64,8 @@
         "quantity_selector",
         "buy_buttons",
         "description",
-        "share"
+        "share",
+        "tabs"
       ],
       "settings": {
         "enable_sticky_info": true,
